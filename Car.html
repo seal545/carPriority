@@ -14,6 +14,13 @@ function carPro() {
     let carArr=[];
     let carArrPriorityArr=[];
     let strBirth=document.getElementById('input').value;
+    //生日输入字符处理
+    if(strBirth.length==2){
+        strBirth=strBirth[0]+'0'+strBirth[1];
+    }else if(strBirth.length==3 &&strBirth[0]=='1'){
+        strBirth=strBirth[0]+strBirth[1]+'0'+strBirth[2];
+    }
+    //匹配多于三个的字符
     let reg = /^(.*0.*){3,}|(.*1.*){3,}|(.*2.*){3,}|(.*3.*){3,}|(.*4.*){3,}|(.*5.*){3,}|(.*6.*){3,}|(.*7.*){3,}|(.*8.*){3,}|(.*9.*){3,}$/;
     for(let i=10000;i<100000;i++){
         let str=String(i);
@@ -27,6 +34,7 @@ function carPro() {
             carArr.push(i);
         }
     }
+    //判断连续递增
     function judgeCons(str) {
         let seq1=parseInt(str[0]);
         let seq2=parseInt(str[1]);
@@ -39,9 +47,7 @@ function carPro() {
             return false;
         }
     }
-
     console.log('carArr',carArr)
-
 
     //计算权重
     for(let i of carArr){
